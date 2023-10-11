@@ -1,10 +1,11 @@
+import ResumePage from '@/components/ResumePage'
 import React from 'react'
 
 type Props = {}
 
 const Resume = (props: Props) => {
   return (
-    <div>Resume</div>
+    <ResumePage />
   )
 }
 

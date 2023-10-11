@@ -1,3 +1,4 @@
+import Title from "@/components/Title";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -28,9 +29,7 @@ const Header = (props: Props) => {
   return (
     <div className="flex items-center justify-between px-24 py-14 sticky top-0 z-10 bg-white">
       <div className="flex justify-start items-center">
-        <h1 className="text-2xl font-black uppercase tracking-widest">
-          BeDuong
-        </h1>
+        <Title label="BeDuong" size={32}/>
         <span className="font-bold uppercase mx-2">
           <SlArrowRight />
         </span>
