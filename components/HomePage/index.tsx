@@ -6,12 +6,12 @@ interface Props {}
 
 export const Home = (props: Props) => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between px-24">
-      <div className="relative w-full h-screen">
-        <div className="absolute inset-0 w-[45%] h-full bg-[#E6DACE] z-[-1]"></div>
-        <div className="flex w-full h-full flex items-center justify-center">
-          <div className="flex flex-col items-center shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
-            <div className="flex flex-col items-center justify-center py-14 bg-[#F4ECE6] w-[375px]">
+    <div className="flex min-h-screen flex-col items-center justify-between px-24 mb-32 sm:mb-0">
+      <div className="relative w-max sm:w-full h-screen py-8 mt-12 sm:mt-0">
+        <div className="absolute inset-0 w-full sm:w-[45%] h-full bg-[#E6DACE] z-[-1] top-32 sm:top-0"></div>
+        <div className="flex w-full h-full flex items-center justify-center flex-col sm:flex-row">
+          <div className="flex flex-col items-center shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)">
+            <div className="flex flex-col items-center justify-center py-14 bg-[#F4ECE6] w-[320px] sm:w-[375px]">
               <Image
                 src="/avatar.webp"
                 alt="avatar"
