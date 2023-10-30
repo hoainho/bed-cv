@@ -8,7 +8,7 @@ const ProjectsPage = (props: Props) => {
     <div className="flex flex-col items-center px-5 sm:px-24 py-8 bg-[#E6DACE]">
       <div className="w-full sm:w-[750px]">
         <div className="w-full my-20">
-          <Title label="Projects" />
+          <Title label="Projects" link="/projects"/>
           <p className="w-full break-all font-light text-lg mt-12 text-justify sm:text-center px-8 tracking-wide">
             I'm a paragraph. Click here to add your own text and edit me. It’s
             easy. Just click “Edit Text” or double click me to add your own

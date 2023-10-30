@@ -72,7 +72,7 @@ const ResumePage = (props: Props) => {
   return (
     <div className="flex flex-col items-center px-5 sm:px-24 py-8 bg-[#E6DACE]">
       <div className="my-20">
-        <Title label="Resume" />
+        <Title label="Resume" link="/resume"/>
       </div>
       <div className="w-full sm:w-[724px]">
         <div className="w-full mb-12">

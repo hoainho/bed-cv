@@ -6,7 +6,7 @@ const Footer = (props: Props) => {
   return (
     <div className="relative flex items-start sm:items-center justify-between px-24 py-14 flex-row footer-direction">
       <div className="flex flex-col justify-start items-start sm:items-center mt-3 sm:mt-0">
-        <h2 className="mb-1">© 2023 by BeDuong</h2>
+        <h2 className="mb-1">© 2023 by Duong</h2>
         <h2>
           Designed by{" "}
           <a

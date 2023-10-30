@@ -19,7 +19,7 @@ export const Home = (props: Props) => {
                 height={205}
                 className="rounded-full h-[205px] border object-contain p-5 mb-8"
               />
-              <h1 className="font-bold text-4xl">Be Duong</h1>
+              <h1 className="font-bold text-4xl uppercase">Duong</h1>
               <div className="w-[50px] h-[2px] bg-primary my-8"></div>
               <h1 className="font-light text-2xl tracking-wide uppercase">
                 Designer

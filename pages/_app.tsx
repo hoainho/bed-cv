@@ -8,15 +8,62 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div>
       <Head>
-        <title>BED CV | Be Duong</title>
+        <title>BED Profile | Be Duong</title>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=5"
         />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href={"/icons/ready-to-go.png"} />
       </Head>
       <Header />
-      <Component {...pageProps} />
+      <div className="wrapper">
+        <div className="box">
+          <span className="dot"></span>
+        </div>
+        <div className="box">
+          <span className="dot"></span>
+        </div>
+        <div className="box">
+          <span className="dot"></span>
+        </div>
+        <div className="box">
+          <span className="dot"></span>
+        </div>
+        <div className="box">
+          <span className="dot"></span>
+        </div>
+        <div className="box">
+          <span className="dot"></span>
+        </div>
+        <div className="box">
+          <span className="dot"></span>
+        </div>
+        <div className="box">
+          <span className="dot"></span>
+        </div>
+        <div className="box">
+          <span className="dot"></span>
+        </div>
+        <div className="box">
+          <span className="dot"></span>
+        </div>
+        <div className="box">
+          <span className="dot"></span>
+        </div>
+        <div className="box">
+          <span className="dot"></span>
+        </div>
+        <div className="box">
+          <span className="dot"></span>
+        </div>
+        <div className="box">
+          <span className="dot"></span>
+        </div>
+        <div className="box">
+          <span className="dot"></span>
+        </div>
+        <Component {...pageProps} />
+      </div>
       <Footer />
     </div>
   );

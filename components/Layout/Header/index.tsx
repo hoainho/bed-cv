@@ -46,13 +46,13 @@ const Header = (props: Props) => {
   return (
     <div className="flex items-center justify-between px-24 py-14 relative sm:sticky top-0 z-10 bg-white">
       <div className="flex justify-start items-center flex-col sm:flex-row">
-        <Title label="BeDuong" />
+        <Title label="Duong" link="/" />
         <span className="font-bold uppercase mx-2 hidden sm:flex">
           <SlArrowRight />
         </span>
         <h1 className="text-xl font-light uppercase">
           {router.pathname === "/"
-            ? "Design UI"
+            ? "Design"
             : router.pathname?.replace("/", "")}
         </h1>
       </div>
