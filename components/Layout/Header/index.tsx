@@ -1,12 +1,13 @@
 import Title from "@/components/Title";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { SlArrowRight } from "react-icons/sl";
 
 type Props = {};
 
 const Header = (props: Props) => {
+  const refTooltipNav = useRef(null);
   const [navbar] = useState([
     {
       label: "About me",
@@ -26,7 +27,22 @@ const Header = (props: Props) => {
     },
   ]);
   const router = useRouter();
-  const [openNavbar, setOpenNavbar] = useState(false)
+  const [openNavbar, setOpenNavbar] = useState(false);
+
+  useEffect(() => {
+    const handleOutSideClick = (event: any) => {
+      if (openNavbar && !(refTooltipNav.current as any)?.contains(event.target)) {
+        console.log("Outside Clicked. ");
+        setOpenNavbar(false);
+      }
+    };
+
+    window.addEventListener("mousedown", handleOutSideClick);
+
+    return () => {
+      window.removeEventListener("mousedown", handleOutSideClick);
+    };
+  }, [refTooltipNav, openNavbar]);
   return (
     <div className="flex items-center justify-between px-24 py-14 relative sm:sticky top-0 z-10 bg-white">
       <div className="flex justify-start items-center flex-col sm:flex-row">
@@ -59,7 +75,7 @@ const Header = (props: Props) => {
             aria-hidden="true"
           >
             <path
-              stroke-linecap="round"
+              strokeLinecap="round"
               stroke-linejoin="round"
               d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
             />
@@ -73,14 +89,19 @@ const Header = (props: Props) => {
             aria-hidden="true"
           >
             <path
-              stroke-linecap="round"
+              strokeLinecap="round"
               stroke-linejoin="round"
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
         </button>
       </div>
-      <div className={`justify-start items-start sm:items-center ${openNavbar ? "navbar-mobile-display" : "navbar-mobile-hidden"} sm:flex navbar-mobile`}>
+      <div
+        className={`justify-start items-start sm:items-center ${
+          openNavbar ? "navbar-mobile-display" : "navbar-mobile-hidden"
+        } sm:flex navbar-mobile`}
+        ref={refTooltipNav}
+      >
         {navbar.map((item, index) => (
           <div key={index} className="navbar-item mx-2">
             <Link
