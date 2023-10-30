@@ -4,7 +4,7 @@ type Props = {};
 
 const ContactPage = (props: Props) => {
   return (
-    <form className="w-[724px] border-b border-gray-900/10 pb-12">
+    <form className="w-full sm:w-[724px] border-b border-gray-900/10 pb-12">
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div className="sm:col-span-3">
           <label
