@@ -4,7 +4,9 @@ import { AppProps } from "next/app";
 import "@/styles/global.scss";
 import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
+import { useRouter } from "next/router";
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   return (
     <div>
       <Head>
@@ -15,56 +17,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         />
         <link rel="icon" type="image/x-icon" href={"/icons/ready-to-go.png"} />
       </Head>
-      <Header />
-      <div className="wrapper">
-        <div className="box">
-          <span className="dot"></span>
-        </div>
-        <div className="box">
-          <span className="dot"></span>
-        </div>
-        <div className="box">
-          <span className="dot"></span>
-        </div>
-        <div className="box">
-          <span className="dot"></span>
-        </div>
-        <div className="box">
-          <span className="dot"></span>
-        </div>
-        <div className="box">
-          <span className="dot"></span>
-        </div>
-        <div className="box">
-          <span className="dot"></span>
-        </div>
-        <div className="box">
-          <span className="dot"></span>
-        </div>
-        <div className="box">
-          <span className="dot"></span>
-        </div>
-        <div className="box">
-          <span className="dot"></span>
-        </div>
-        <div className="box">
-          <span className="dot"></span>
-        </div>
-        <div className="box">
-          <span className="dot"></span>
-        </div>
-        <div className="box">
-          <span className="dot"></span>
-        </div>
-        <div className="box">
-          <span className="dot"></span>
-        </div>
-        <div className="box">
-          <span className="dot"></span>
-        </div>
-        <Component {...pageProps} />
-      </div>
-      <Footer />
+      {!router.pathname?.includes('admin') && <Header />}
+      <Component {...pageProps} />
+      {!router.pathname?.includes('admin') && <Footer />}
     </div>
   );
 }

@@ -45,7 +45,7 @@ const Header = (props: Props) => {
   }, [refTooltipNav, openNavbar]);
   return (
     <div className="flex items-center justify-between px-24 py-14 relative sm:sticky top-0 z-10 bg-white">
-      <div className="flex justify-start items-center flex-col sm:flex-row">
+      <div className="w-full flex justify-center sm:justify-start items-center flex-col sm:flex-row">
         <Title label="Duong" link="/" />
         <span className="font-bold uppercase mx-2 hidden sm:flex">
           <SlArrowRight />
@@ -106,7 +106,7 @@ const Header = (props: Props) => {
           <div key={index} className="navbar-item mx-2">
             <Link
               href={item.link}
-              className={`text-xl font-light uppercase ${
+              className={`text-xl text-nowrap font-light uppercase ${
                 item.link === router.pathname ? "text-primary" : ""
               }`}
             >
