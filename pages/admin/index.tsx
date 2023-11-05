@@ -1,9 +1,9 @@
-import React from 'react'
+import { Content } from "@/admin/components/home/content";
+import { NextPage } from "next";
+import React from "react";
 
-const Admin = () => {
-  return (
-    <div>Admin</div>
-  )
-}
+const HomeAdmin: NextPage = () => {
+  return <Content />;
+};
 
-export default Admin
+export default HomeAdmin;
