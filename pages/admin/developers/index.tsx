@@ -1,8 +1,139 @@
+import { Box } from "@/admin/components/styles/box";
 import { Flex } from "@/admin/components/styles/flex";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { HiOutlinePhoto } from "react-icons/hi2";
+import { AiFillDelete } from "react-icons/ai";
+import { Button } from "@nextui-org/react";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+interface IFormInput {
+  id: number;
+  duration: string;
+  role: string;
+  companyName: string;
+  location: string;
+  thumbnails: string;
+}
+
 const DeveloperAdmin = () => {
+  const [initForm] = useState<IFormInput>({
+    id: 0,
+    duration: "",
+    role: "",
+    companyName: "",
+    location: "",
+    thumbnails: "",
+  });
+  const [projectContainer, setProjectContainer] =
+    useState<IFormInput>(initForm);
+  const {
+    register: registerProject,
+    handleSubmit: handleSubmitProject,
+    reset: resetProject,
+  } = useForm<IFormInput>({
+    defaultValues: initForm,
+  });
+
+  const [educationContainer, setEducationContainer] =
+    useState<IFormInput>(initForm);
+  const {
+    register: registerEducation,
+    handleSubmit: handleSubmitEducation,
+    reset: resetEducation,
+  } = useForm<IFormInput>({
+    defaultValues: initForm,
+  });
+
+  const [projects, setProjects] = useState([
+    {
+      id: 1,
+      duration: "2019 - 2020",
+      role: "UI Designer",
+      companyName: "Hutech University",
+      location: "Ho Chi Minh, Viet Nam",
+      thumbnails: `I'm a paragraph. Click here to add your own text and edit me.
+          It’s easy. Just click “Edit Text” or double click me to add
+          your own content and make changes to the font.`,
+    },
+    {
+      id: 2,
+      duration: "2020 - 2021",
+      role: "UI/UX Designer",
+      companyName: "Hutech University",
+      location: "Ho Chi Minh, Viet Nam",
+      thumbnails: `lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.`,
+    },
+    {
+      id: 3,
+      duration: "2020 - 2021",
+      role: "UI/UX Designer",
+      companyName: "Hutech University",
+      location: "Ho Chi Minh, Viet Nam",
+      thumbnails: `lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.`,
+    },
+    {
+      id: 4,
+      duration: "2020 - 2021",
+      role: "UI/UX Designer",
+      companyName: "Hutech University",
+      location: "Ho Chi Minh, Viet Nam",
+      thumbnails: `lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.`,
+    },
+    {
+      id: 5,
+      duration: "2020 - 2021",
+      role: "UI/UX Designer",
+      companyName: "Hutech University",
+      location: "Ho Chi Minh, Viet Nam",
+      thumbnails: `lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.`,
+    },
+  ]);
+
+  const [educations, setEducations] = useState([
+    {
+      id: 1,
+      duration: "2019 - 2020",
+      role: "Graphic Designer",
+      companyName: "Hutech University",
+      location: "Ho Chi Minh, Viet Nam",
+      thumbnails: `I'm a paragraph. Click here to add your own text and edit me.
+          It’s easy. Just click “Edit Text” or double click me to add
+          your own content and make changes to the font.`,
+    },
+  ]);
+  useEffect(() => {
+    if (projectContainer.id > 0) {
+      resetProject(projectContainer);
+      setProjectContainer(initForm);
+    }
+  }, [projectContainer]);
+
+  useEffect(() => {
+    if (educationContainer.id > 0) {
+      resetEducation(educationContainer);
+      setEducationContainer(initForm);
+    }
+  }, [educationContainer]);
+
+
+  const onAddProject: SubmitHandler<IFormInput> = (data) => {
+    setProjects([...projects, { ...data, id: projects.length + 1 }]);
+    resetProject(projectContainer);
+  };
+
+  const onAddEducation: SubmitHandler<IFormInput> = (data) => {
+    setEducations([...educations, { ...data, id: educations.length + 1 }]);
+    resetEducation(educationContainer);
+  };
+
+
+  const onRemoveProject = (projectId: number) => {
+    setProjects(projects.filter((project) => project.id !== projectId));
+  };
+  const onRemoveEducation = (educationId: number) => {
+    setEducations(educations.filter((education) => education.id !== educationId));
+  };
   return (
     <Flex
       css={{
@@ -16,11 +147,11 @@ const DeveloperAdmin = () => {
       justify={"center"}
       direction={"column"}
     >
-      <form className="gap-[var(--nextui-space-12)]">
+      <div>
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
-            <h2 className="text-base font-semibold leading-7 text-[var(--nextui-colors-accents9)]">
-              Profile
+            <h2 className="text-base uppercase font-semibold leading-7 text-[var(--nextui-colors-accents9)]">
+              About me
             </h2>
             <p className="mt-1 text-sm leading-6 text-[var(--nextui-colors-accents8)]">
               This information will be displayed publicly so be careful what you
@@ -30,28 +161,90 @@ const DeveloperAdmin = () => {
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div className="sm:col-span-4">
                 <label
-                  htmlFor="username"
+                  htmlFor="displayname"
                   className="block text-sm font-medium leading-6 text-[var(--nextui-colors-accents9)]"
                 >
-                  Username
+                  Social
                 </label>
                 <div className="mt-2">
                   <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                     <span className="flex select-none items-center pl-3 text-[var(--nextui-colors-accents6)] sm:text-sm">
-                      workcation.com/
+                      facebook.com/
                     </span>
                     <input
                       type="text"
-                      name="username"
-                      id="username"
-                      autoComplete="username"
+                      name="usernameFacebook"
+                      id="usernameFacebook"
+                      autoComplete="usernameFacebook"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-[var(--nextui-colors-accents9)] placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                      placeholder="janesmith"
+                      placeholder="be-duong"
+                    />
+                  </div>
+                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                    <span className="flex select-none items-center pl-3 text-[var(--nextui-colors-accents6)] sm:text-sm">
+                      instagram.com/
+                    </span>
+                    <input
+                      type="text"
+                      name="usernameInstagram"
+                      id="usernameInstagram"
+                      autoComplete="usernameInstagram"
+                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-[var(--nextui-colors-accents9)] placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      placeholder="be-duong"
+                    />
+                  </div>
+                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                    <span className="flex select-none items-center pl-3 text-[var(--nextui-colors-accents6)] sm:text-sm">
+                      linkedin.com/
+                    </span>
+                    <input
+                      type="text"
+                      name="usernameLinkedin"
+                      id="usernameLinkedin"
+                      autoComplete="usernameLinkedin"
+                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-[var(--nextui-colors-accents9)] placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      placeholder="be-duong"
                     />
                   </div>
                 </div>
               </div>
 
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="display-name"
+                  className="block text-sm font-medium leading-6 text-[var(--nextui-colors-accents9)]"
+                >
+                  Display name
+                </label>
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    name="display-name"
+                    id="display-name"
+                    autoComplete="given-name"
+                    className="block w-full rounded-md border-0 py-1.5 text-[var(--nextui-colors-accents9)] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    style={{ backgroundColor: "var(--nextui-colors-gray100)" }}
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="specialized"
+                  className="block text-sm font-medium leading-6 text-[var(--nextui-colors-accents9)]"
+                >
+                  Specialized
+                </label>
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    name="specialized"
+                    id="specialized"
+                    autoComplete="family-name"
+                    className="block w-full rounded-md border-0 py-1.5 text-[var(--nextui-colors-accents9)] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    style={{ backgroundColor: "var(--nextui-colors-gray100)" }}
+                  />
+                </div>
+              </div>
               <div className="col-span-full">
                 <label
                   htmlFor="about"
@@ -133,26 +326,78 @@ const DeveloperAdmin = () => {
           </div>
 
           <div className="border-b border-gray-900/10 pb-12">
-            <h2 className="text-base font-semibold leading-7 text-[var(--nextui-colors-accents9)]">
-              Personal Information
+            <h2 className="text-base uppercase font-semibold leading-7 text-[var(--nextui-colors-accents9)]">
+              Resume
             </h2>
-            <p className="mt-1 text-sm leading-6 text-[var(--nextui-colors-accents6)]">
-              Use a permanent address where you can receive mail.
+            <p className="mt-1 text-sm leading-6 text-[var(--nextui-colors-accents6)] mb-2">
+              Introduce yourself and what you do
             </p>
 
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+            <h2 className="text-base font-semibold leading-7 text-[var(--nextui-colors-accents9)] mt-5 mb-3">
+              Project
+              </h2>
+            <Flex
+              css={{ gap: "$4" }}
+              align={"center"}
+              justify={"between"}
+              wrap={"wrap"}
+            >
+              {projects.map((project) => (
+                <Box
+                  className="projectItem relative w-[48%] p-3 bg-[var(--nextui-colors-gray100)] mb-2 rounded"
+                  key={project.id}
+                  onClick={() => setProjectContainer(project)}
+                >
+                  <h1 className="text-primary font-bold text-sm">
+                    {project.duration}
+                  </h1>
+                  <Flex className="w-full flex flex-col sm:flex-row justify-between items-start text-base">
+                    <div className="w-full sm:w-5/12 mb-2 sm:mb-0">
+                      {/* Job position */}
+                      <h1 className="font-light uppercase text-base mb-0">
+                        {project.role}
+                      </h1>
+                      {/* Company name */}
+                      <h2 className="font-light text-base mb-0">
+                        {project.companyName}
+                      </h2>
+                      {/* Company location */}
+                      <h3 className="font-light text-base mb-0">
+                        {project.location}
+                      </h3>
+                    </div>
+                    <div className="w-full sm:w-7/12">
+                      <p className="font-light text-sm">{project.thumbnails}</p>
+                    </div>
+                  </Flex>
+                  <Box className="remove absolute top-50 right-0">
+                    <AiFillDelete
+                      color="var(--nextui-colors-accents9)"
+                      size={30}
+                      onClick={() => onRemoveProject(project.id)}
+                    />
+                  </Box>
+                </Box>
+              ))}
+            </Flex>
+
+            <form
+              onSubmit={handleSubmitProject(onAddProject)}
+              className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
+            >
               <div className="sm:col-span-3">
                 <label
-                  htmlFor="first-name"
+                  htmlFor="duration"
                   className="block text-sm font-medium leading-6 text-[var(--nextui-colors-accents9)]"
                 >
-                  First name
+                  Duration
                 </label>
                 <div className="mt-2">
                   <input
+                    {...registerProject("duration")}
                     type="text"
-                    name="first-name"
-                    id="first-name"
+                    name="duration"
+                    id="duration"
                     autoComplete="given-name"
                     className="block w-full rounded-md border-0 py-1.5 text-[var(--nextui-colors-accents9)] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     style={{ backgroundColor: "var(--nextui-colors-gray100)" }}
@@ -162,77 +407,18 @@ const DeveloperAdmin = () => {
 
               <div className="sm:col-span-3">
                 <label
-                  htmlFor="last-name"
+                  htmlFor="role"
                   className="block text-sm font-medium leading-6 text-[var(--nextui-colors-accents9)]"
                 >
-                  Last name
+                  role
                 </label>
                 <div className="mt-2">
                   <input
+                    {...registerProject("role")}
                     type="text"
-                    name="last-name"
-                    id="last-name"
+                    name="role"
+                    id="role"
                     autoComplete="family-name"
-                    className="block w-full rounded-md border-0 py-1.5 text-[var(--nextui-colors-accents9)] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    style={{ backgroundColor: "var(--nextui-colors-gray100)" }}
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-4">
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium leading-6 text-[var(--nextui-colors-accents9)]"
-                >
-                  Email address
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    className="block w-full rounded-md border-0 py-1.5 text-[var(--nextui-colors-accents9)] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    style={{ backgroundColor: "var(--nextui-colors-gray100)" }}
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-3">
-                <label
-                  htmlFor="country"
-                  className="block text-sm font-medium leading-6 text-[var(--nextui-colors-accents9)]"
-                >
-                  Country
-                </label>
-                <div className="mt-2">
-                  <select
-                    id="country"
-                    name="country"
-                    autoComplete="country-name"
-                    className="block w-full rounded-md border-0 py-1.5 text-[var(--nextui-colors-accents9)] shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                    style={{ backgroundColor: "var(--nextui-colors-gray100)" }}
-                  >
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="col-span-full">
-                <label
-                  htmlFor="street-address"
-                  className="block text-sm font-medium leading-6 text-[var(--nextui-colors-accents9)]"
-                >
-                  Street address
-                </label>
-                <div className="mt-2">
-                  <input
-                    type="text"
-                    name="street-address"
-                    id="street-address"
-                    autoComplete="street-address"
                     className="block w-full rounded-md border-0 py-1.5 text-[var(--nextui-colors-accents9)] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     style={{ backgroundColor: "var(--nextui-colors-gray100)" }}
                   />
@@ -241,16 +427,17 @@ const DeveloperAdmin = () => {
 
               <div className="sm:col-span-2 sm:col-start-1">
                 <label
-                  htmlFor="city"
+                  htmlFor="companyName"
                   className="block text-sm font-medium leading-6 text-[var(--nextui-colors-accents9)]"
                 >
-                  City
+                  Company
                 </label>
                 <div className="mt-2">
                   <input
+                    {...registerProject("companyName")}
                     type="text"
-                    name="city"
-                    id="city"
+                    name="companyName"
+                    id="companyName"
                     autoComplete="address-level2"
                     className="block w-full rounded-md border-0 py-1.5 text-[var(--nextui-colors-accents9)] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     style={{ backgroundColor: "var(--nextui-colors-gray100)" }}
@@ -258,46 +445,211 @@ const DeveloperAdmin = () => {
                 </div>
               </div>
 
-              <div className="sm:col-span-2">
+              <div className="sm:col-span-4">
                 <label
-                  htmlFor="region"
+                  htmlFor="location"
                   className="block text-sm font-medium leading-6 text-[var(--nextui-colors-accents9)]"
                 >
-                  State / Province
+                  Location
                 </label>
                 <div className="mt-2">
                   <input
+                    {...registerProject("location")}
                     type="text"
-                    name="region"
-                    id="region"
-                    autoComplete="address-level1"
+                    name="location"
+                    id="location"
+                    autoComplete="location"
                     className="block w-full rounded-md border-0 py-1.5 text-[var(--nextui-colors-accents9)] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     style={{ backgroundColor: "var(--nextui-colors-gray100)" }}
                   />
                 </div>
               </div>
 
-              <div className="sm:col-span-2">
+              <div className="col-span-full">
                 <label
-                  htmlFor="postal-code"
+                  htmlFor="thumbnails"
                   className="block text-sm font-medium leading-6 text-[var(--nextui-colors-accents9)]"
                 >
-                  ZIP / Postal code
+                  Thumbnails
+                </label>
+                <div className="mt-2">
+                  <textarea
+                    {...registerProject("thumbnails")}
+                    id="thumbnails"
+                    name="thumbnails"
+                    rows={3}
+                    className="block w-full rounded-md border-0 py-1.5 text-[var(--nextui-colors-accents9)] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-[var(--nextui-colors-accents4)] focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    defaultValue={""}
+                    style={{ backgroundColor: "var(--nextui-colors-gray100)" }}
+                  />
+                </div>
+                <p className="mt-3 text-sm leading-6 text-[var(--nextui-colors-accents6)]">
+                  Write a few shorten descriptions about your project.
+                </p>
+              </div>
+              <Button type="submit">Add</Button>
+            </form>
+
+            {/* Education Section */}
+            <h2 className="text-base font-semibold leading-7 text-[var(--nextui-colors-accents9)] mt-10 mb-3">
+              Education
+              </h2>
+            <Flex
+              css={{ gap: "$4"}}
+              align={"center"}
+              justify={"between"}
+              wrap={"wrap"}
+            >
+              {educations.map((education) => (
+                <Box
+                  className="projectItem relative w-[48%] p-3 bg-[var(--nextui-colors-gray100)] mb-2 rounded"
+                  key={education.id}
+                  onClick={() => setEducationContainer(education)}
+                >
+                  <h1 className="text-primary font-bold text-sm">
+                    {education.duration}
+                  </h1>
+                  <Flex className="w-full flex flex-col sm:flex-row justify-between items-start text-base">
+                    <div className="w-full sm:w-5/12 mb-2 sm:mb-0">
+                      {/* Job position */}
+                      <h1 className="font-light uppercase text-base mb-0">
+                        {education.role}
+                      </h1>
+                      {/* Company name */}
+                      <h2 className="font-light text-base mb-0">
+                        {education.companyName}
+                      </h2>
+                      {/* Company location */}
+                      <h3 className="font-light text-base mb-0">
+                        {education.location}
+                      </h3>
+                    </div>
+                    <div className="w-full sm:w-7/12">
+                      <p className="font-light text-sm">{education.thumbnails}</p>
+                    </div>
+                  </Flex>
+                  <Box className="remove absolute top-50 right-0">
+                    <AiFillDelete
+                      color="var(--nextui-colors-accents9)"
+                      size={30}
+                      onClick={() => onRemoveEducation(education.id)}
+                    />
+                  </Box>
+                </Box>
+              ))}
+            </Flex>
+
+            <form
+              onSubmit={handleSubmitEducation(onAddEducation)}
+              className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
+            >
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="duration"
+                  className="block text-sm font-medium leading-6 text-[var(--nextui-colors-accents9)]"
+                >
+                  Duration
                 </label>
                 <div className="mt-2">
                   <input
+                    {...registerEducation("duration")}
                     type="text"
-                    name="postal-code"
-                    id="postal-code"
-                    autoComplete="postal-code"
+                    name="duration"
+                    id="duration"
+                    autoComplete="given-name"
                     className="block w-full rounded-md border-0 py-1.5 text-[var(--nextui-colors-accents9)] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     style={{ backgroundColor: "var(--nextui-colors-gray100)" }}
                   />
                 </div>
               </div>
-            </div>
+
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="role"
+                  className="block text-sm font-medium leading-6 text-[var(--nextui-colors-accents9)]"
+                >
+                  role
+                </label>
+                <div className="mt-2">
+                  <input
+                    {...registerEducation("role")}
+                    type="text"
+                    name="role"
+                    id="role"
+                    autoComplete="family-name"
+                    className="block w-full rounded-md border-0 py-1.5 text-[var(--nextui-colors-accents9)] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    style={{ backgroundColor: "var(--nextui-colors-gray100)" }}
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-2 sm:col-start-1">
+                <label
+                  htmlFor="companyName"
+                  className="block text-sm font-medium leading-6 text-[var(--nextui-colors-accents9)]"
+                >
+                  Company
+                </label>
+                <div className="mt-2">
+                  <input
+                    {...registerEducation("companyName")}
+                    type="text"
+                    name="companyName"
+                    id="companyName"
+                    autoComplete="address-level2"
+                    className="block w-full rounded-md border-0 py-1.5 text-[var(--nextui-colors-accents9)] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    style={{ backgroundColor: "var(--nextui-colors-gray100)" }}
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="location"
+                  className="block text-sm font-medium leading-6 text-[var(--nextui-colors-accents9)]"
+                >
+                  Location
+                </label>
+                <div className="mt-2">
+                  <input
+                    {...registerEducation("location")}
+                    type="text"
+                    name="location"
+                    id="location"
+                    autoComplete="location"
+                    className="block w-full rounded-md border-0 py-1.5 text-[var(--nextui-colors-accents9)] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    style={{ backgroundColor: "var(--nextui-colors-gray100)" }}
+                  />
+                </div>
+              </div>
+
+              <div className="col-span-full">
+                <label
+                  htmlFor="thumbnails"
+                  className="block text-sm font-medium leading-6 text-[var(--nextui-colors-accents9)]"
+                >
+                  Thumbnails
+                </label>
+                <div className="mt-2">
+                  <textarea
+                    {...registerEducation("thumbnails")}
+                    id="thumbnails"
+                    name="thumbnails"
+                    rows={3}
+                    className="block w-full rounded-md border-0 py-1.5 text-[var(--nextui-colors-accents9)] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-[var(--nextui-colors-accents4)] focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    defaultValue={""}
+                    style={{ backgroundColor: "var(--nextui-colors-gray100)" }}
+                  />
+                </div>
+                <p className="mt-3 text-sm leading-6 text-[var(--nextui-colors-accents6)]">
+                  Write a few shorten descriptions about your education.
+                </p>
+              </div>
+              <Button type="submit">Add</Button>
+            </form>
           </div>
 
+          {/* Continue work at here */}
           <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-base font-semibold leading-7 text-[var(--nextui-colors-accents9)]">
               Notifications
@@ -448,7 +800,7 @@ const DeveloperAdmin = () => {
             Save
           </button>
         </div>
-      </form>
+      </div>
     </Flex>
   );
 };

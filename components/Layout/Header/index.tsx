@@ -32,7 +32,6 @@ const Header = (props: Props) => {
   useEffect(() => {
     const handleOutSideClick = (event: any) => {
       if (openNavbar && !(refTooltipNav.current as any)?.contains(event.target)) {
-        console.log("Outside Clicked. ");
         setOpenNavbar(false);
       }
     };
@@ -76,7 +75,7 @@ const Header = (props: Props) => {
           >
             <path
               strokeLinecap="round"
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
             />
           </svg>
@@ -90,7 +89,7 @@ const Header = (props: Props) => {
           >
             <path
               strokeLinecap="round"
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>

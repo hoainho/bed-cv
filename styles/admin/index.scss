@@ -1,0 +1,22 @@
+.projectItem{
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    border-color: transparent;
+    overflow: hidden;
+    &:hover{
+        box-shadow: 1px 1px 1px 0.1px var(--nextui-colors-accents9);
+        transform: scale(1.009);
+        overflow: visible;
+    }
+    .remove{
+        opacity: 0;
+        top: 50%;
+        right: 0;
+        transform: translate(100%, -50%);
+        transition: all 0.25s ease-in-out;
+    }
+    &:hover .remove{
+        opacity: 1;
+        transform: translate(50%, -50%);
+    }
+}
