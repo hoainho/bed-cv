@@ -8,71 +8,73 @@ const ResumePage = (props: Props) => {
   const [skills] = useState([
     {
       id: 1,
-      label: "Entrepreneurial Mindset",
+      label: "Adobe Photoshop",
     },
     {
       id: 2,
-      label: "Go-to-Market Planning",
+      label: "Adobe Illustrator",
     },
     {
       id: 3,
-      label: "Teamwork & Collaboration",
+      label: "Figma",
     },
     {
       id: 4,
-      label: "Digital Analytics",
+      label: "Canvas",
     },
   ]);
-  const [languages] = useState([
+  const [skillOther] = useState([
     {
       id: 1,
-      label: "English (native)",
+      label: "Office Informatics ( Basic )",
     },
     {
       id: 2,
-      label: "French (proficient)",
-    },
-    {
-      id: 3,
-      label: "Spanish (proficient)",
+      label: "Drawing",
     },
   ]);
-  const [projects, setProjects] = useState([
+  const [projects] = useState([
     {
       id: 1,
-      timeline: "2019 - 2020",
-      position: "UI Designer",
-      companyName: "Hutech University",
+      timeline: "Adobe Photoshop",
+      position: "Graphic Designer",
+      companyName: "Freelancer",
       location: "Ho Chi Minh, Viet Nam",
-      description: `I'm a paragraph. Click here to add your own text and edit me.
-      It’s easy. Just click “Edit Text” or double click me to add
-      your own content and make changes to the font.`,
+      assetsLink: "https://tinyurl.com/beduong-pts",
+      description: `Worked on over 8+ products 
+      Has experience with a wide range of market items such as:  F&B, poster film, cosmetics, etc.
+      The product is designed to be unique and self-creative.
+      Capable of creating a variety of designs such as a logo, banner, poster, card visit, etc.
+      In-depth understanding of Photoshop tools and the ability to operate independently with little supervision`,
     },
     {
       id: 2,
-      timeline: "2020 - 2021",
-      position: "UI/UX Designer",
-      companyName: "Hutech University",
+      timeline: "Adobe Illustrator",
+      position: "Graphic Designer",
+      companyName: "Freelancer",
       location: "Ho Chi Minh, Viet Nam",
-      description: `lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.`,
+      assetsLink: "https://tinyurl.com/beduong-ai",
+      description: `Worked on over 10+ products
+      Basic design includes logo, banner, poster, icon, and advanced color change for product
+      Capable of doing difficult research and self-resolving design challenges`,
     },
   ]);
-  const [educations, setEducations] = useState([
+  const [educations] = useState([
     {
       id: 1,
       timeline: "2022 - Present",
       position: "UI Designer",
       companyName: "Hutech University",
       location: "Ho Chi Minh, Viet Nam",
-      description: `I'm a paragraph. Click here to add your own text and edit me.
-      It’s easy. Just click “Edit Text” or double click me to add
-      your own content and make changes to the font.`,
-    }
+      description: `Regarding important subjects, I usually receive an 8+ since I am capable of self-study, and I am also confident in my ability to work. 
+      With themes that need the formation of a design team, I am the team leader and work as a supervisor and important member of the team in the release of creative and product.
+      Public speaking and product presentation abilities. I once gave a presentation in front of a class of more than 60 people and earned numerous accolades from professors and students, as well as good marks.`,
+    },
   ]);
   return (
     <div className="flex flex-col items-center px-5 sm:px-24 py-8 bg-[#E6DACE]">
       <div className="my-20">
-        <Title label="Resume" link="/resume"/>
+        <Title label="Resume" link="/resume" />
       </div>
       <div className="w-full sm:w-[724px]">
         <div className="w-full mb-12">
@@ -83,41 +85,52 @@ const ResumePage = (props: Props) => {
             >
               Experience
             </h1>
-            <button
-              type="button"
+            <a
+              href="/public/profile/DuongNTB-profile.pdf"
+              download
               className="py-1 px-6 sm:px-8 bg-primary text-white uppercase rounded-3xl h-[34px] sm:h-[40px] flex items-center justify-center text-[14px] sm:text-[24px]"
             >
               Download cv <BiCloudDownload className="ml-2" />
-            </button>
+            </a>
           </div>
           {/* Content */}
           {projects.map((project) => (
             <div className="px-12 py-20 bg-white mb-12" key={project.id}>
-            <h1 className="text-primary font-bold text-2xl mb-4">
-              {project.timeline}
-            </h1>
-            <div className="w-full flex flex-col sm:flex-row justify-between items-start text-lg">
-              <div className="w-full sm:w-50 mb-3 sm:mb-0">
-                {/* Job position */}
-                <h1 className="font-light uppercase text-medium mb-3">
-                  {project.position}
-                </h1>
-                {/* Company name */}
-                <h2 className="font-light text-medium mb-1 sm:mb-3">
-                  {project.companyName}
-                </h2>
-                {/* Company location */}
-                <h3 className="font-light text-medium mb-3">
-                  {project.location}
-                </h3>
-              </div>
-              <div className="w-full sm:w-50">
-                <p className="font-light text-medium">
-                  {project.description}
-                </p>
+              <h1 className="text-primary font-bold text-2xl mb-4">
+                {project.timeline}
+              </h1>
+              <div className="w-full flex flex-col sm:flex-row justify-between items-start text-lg">
+                <div className="w-full sm:w-50 mb-3 sm:mb-0">
+                  {/* Job position */}
+                  <h1 className="font-light uppercase text-medium mb-3">
+                    {project.position}
+                  </h1>
+                  {/* Company name */}
+                  <h2 className="font-light text-medium mb-1 sm:mb-3">
+                    {project.companyName}
+                  </h2>
+                  {/* Company location */}
+                  <h3 className="font-light text-medium mb-5">
+                    {project.location}
+                  </h3>
+                  {project.assetsLink && (
+                    <a
+                      target="_blank"
+                      href={project.assetsLink}
+                      className="font-light text-medium py-2 px-3 bg-primary text-white rounded"
+                      rel="noreferrer"
+                    >
+                      View my products
+                    </a>
+                  )}
+                </div>
+                <div className="w-full sm:w-50">
+                  <p className="font-light text-medium">
+                    {project.description}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
           ))}
         </div>
 
@@ -132,39 +145,41 @@ const ResumePage = (props: Props) => {
           </div>
           {/* Content */}
           {educations.map((education) => (
-          <div className="px-12 py-20 bg-white mb-12" key={education.id}>
-          <h1 className="text-primary font-bold text-2xl mb-4">
-            {education.timeline}
-          </h1>
-          <div className="w-full flex flex-col sm:flex-row justify-between items-start text-lg">
-            <div className="w-full sm:w-50 mb-3 sm:mb-0">
-              {/* Job position */}
-              <h1 className="font-light uppercase text-medium mb-3">
-                {education.position}
+            <div className="px-12 py-20 bg-white mb-12" key={education.id}>
+              <h1 className="text-primary font-bold text-2xl mb-4">
+                {education.timeline}
               </h1>
-              {/* Company name */}
-              <h2 className="font-light text-medium mb-1 sm:mb-3">
-                {education.companyName}
-              </h2>
-              {/* Company location */}
-              <h3 className="font-light text-medium mb-3">
-                {education.location}
-              </h3>
+              <div className="w-full flex flex-col sm:flex-row justify-between items-start text-lg">
+                <div className="w-full sm:w-50 mb-3 sm:mb-0">
+                  {/* Job position */}
+                  <h1 className="font-light uppercase text-medium mb-3">
+                    {education.position}
+                  </h1>
+                  {/* Company name */}
+                  <h2 className="font-light text-medium mb-1 sm:mb-3">
+                    {education.companyName}
+                  </h2>
+                  {/* Company location */}
+                  <h3 className="font-light text-medium mb-3">
+                    {education.location}
+                  </h3>
+                </div>
+                <div className="w-full sm:w-50">
+                  <p className="font-light text-medium">
+                    {education.description}
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="w-full sm:w-50">
-              <p className="font-light text-medium">
-                {education.description}
-              </p>
-            </div>
-          </div>
-        </div>
           ))}
         </div>
 
         {/* Content */}
         <div className="w-full px-12 py-16 sm:py-20 bg-white mb-12">
           <div className="my-4 sm:my-8">
-            <h1 className={`font-black text-[22px] sm:text-3xl mb-12 tracking-widest`}>
+            <h1
+              className={`font-black text-[22px] sm:text-3xl mb-12 tracking-widest`}
+            >
               Professional skillset
             </h1>
             <div className="w-full flex flex-col sm:flex-row flex-nowrap sm:flex-wrap justify-between items-start text-lg">
@@ -180,11 +195,13 @@ const ResumePage = (props: Props) => {
             </div>
           </div>
           <div className="my-4 sm:my-8">
-            <h1 className={`font-black text-[22px] sm:text-3xl mb-12 tracking-widest`}>
-              Languages
+            <h1
+              className={`font-black text-[22px] sm:text-3xl mb-12 tracking-widest`}
+            >
+              Other
             </h1>
             <div className="w-full flex flex-col sm:flex-row flex-nowrap sm:flex-wrap justify-between items-start text-lg">
-              {languages.map((lang) => (
+              {skillOther.map((lang) => (
                 <div
                   key={lang.id}
                   className="w-full sm:w-50 flex justify-start items-center mb-5"
