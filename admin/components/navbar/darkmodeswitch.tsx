@@ -8,7 +8,7 @@ export const DarkModeSwitch = () => {
    return (
       <Switch
          checked={isDark}
-         onChange={(e) => setTheme(e.target.checked ? 'dark' : 'light')}
+         onChange={(e: any) => setTheme(e.target.checked ? 'dark' : 'light')}
       />
    );
 };

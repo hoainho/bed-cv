@@ -19,7 +19,7 @@ export const CompaniesDropdown = () => {
       logo: <AcmeIcon />,
    });
    return (
-      <Dropdown placement="bottom-right" borderWeight={'extrabold'}>
+      <Dropdown placement="bottom-right">
          <Dropdown.Trigger css={{cursor: 'pointer'}}>
             <Box>
                <Flex align={'center'} css={{gap: '$7'}}>

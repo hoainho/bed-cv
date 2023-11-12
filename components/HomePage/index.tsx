@@ -1,6 +1,8 @@
 import Image from "next/image";
 import React from "react";
 import Social from "../Layout/Footer/components/Socials";
+import { Button } from "@nextui-org/react";
+import Link from "next/link";
 
 interface Props {}
 
@@ -30,16 +32,38 @@ export const Home = (props: Props) => {
             </div>
           </div>
           <div className="flex flex-col justify-start items-baseline px-5 py-4 max-w-md">
-            <h1 className="font-black text-[88px] my-2 tracking-widest uppercase stroke-1">Hello</h1>
+            <h1 className="font-black text-[88px] my-2 tracking-widest uppercase stroke-1">
+              Hello
+            </h1>
             <h1 className="font-light text-2xl uppercase my-8">
               {`Here's who I am & what I do`}
             </h1>
             <div className="flex justify-start items-baseline mb-14">
-              <button type="button" className="py-2 px-8 bg-primary text-white uppercase rounded-3xl">resume</button>
-              <button type="button" className="py-2 px-8 ml-4 bg-white text-primary border border-primary hover:bg-primary hover:text-white uppercase rounded-3xl">projects</button>
+              <Link href={"/resume"}>
+                <button
+                  type="button"
+                  className="py-2 px-8 bg-primary text-white uppercase rounded-3xl"
+                >
+                  resume
+                </button>
+              </Link>
+              <Link href={"/projects"}>
+                <button
+                  type="button"
+                  className="py-2 px-8 ml-4 bg-white text-primary border border-primary uppercase rounded-3xl"
+                >
+                  projects
+                </button>
+              </Link>
             </div>
-            <h2 className="break-all mb-8 text-medium">{`I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font`}</h2>
-            <h2 className="break-all text-medium">I’m a great place for you to tell a story and let your users know a little more about you.</h2>
+            <h2 className="break-word text-justify mb-8 text-medium">{`I'm a graphic designer who works as a freelancer, and I have
+              expertise in design with Photoshop, Adobe Illustrator, and Figma.
+              I have also completed over 20+ projects.`}</h2>
+            <h2 className="break-word text-justify text-medium">
+              {`My passion is learning
+              about graphic design and content creativity. I'm working and
+              studying for over 8 hours every day.`}
+            </h2>
           </div>
         </div>
       </div>
