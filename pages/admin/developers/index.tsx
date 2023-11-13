@@ -108,6 +108,7 @@ const DeveloperAdmin = () => {
       resetProject(projectContainer);
       setProjectContainer(initForm);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projectContainer]);
 
   useEffect(() => {
@@ -115,6 +116,7 @@ const DeveloperAdmin = () => {
       resetEducation(educationContainer);
       setEducationContainer(initForm);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [educationContainer]);
 
   const onAddProject: SubmitHandler<IFormInput> = (data) => {
