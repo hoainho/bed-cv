@@ -23,8 +23,8 @@ export const Home = (props: Props) => {
               />
               <h1 className="font-bold text-4xl uppercase">Duong</h1>
               <div className="w-[50px] h-[2px] bg-primary my-8"></div>
-              <h1 className="font-light text-2xl tracking-wide uppercase">
-                Designer
+              <h1 className="font-light text-2xl tracking-wide uppercase px-5 break-word">
+                Graphic Designer
               </h1>
             </div>
             <div className="bg-white w-full py-5 flex justify-center">
